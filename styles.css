@@ -35,6 +35,8 @@ header h1 {
     font-size: 2rem; /* Adjusted to make the title smaller */
     color: #333;
     font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 header .description {
