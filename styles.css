@@ -85,6 +85,8 @@ footer {
     color: #7f8b9b;
     font-weight: 300;
     text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
 }
 
 footer p {
