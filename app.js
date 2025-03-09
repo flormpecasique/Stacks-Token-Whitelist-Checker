@@ -15,17 +15,27 @@ document.getElementById('checkWhitelistBtn').addEventListener('click', async fun
         const response = await fetch(`https://api.mainnet.hiro.so/extended/v1/tokens/${contractAddress}/metadata`);
         const data = await response.json();
 
-        // Verificar si la respuesta es exitosa y si el token está en la whitelist
+        // Verificar si la respuesta tiene un estado que indique "whitelisted" o alguna otra propiedad relevante
         if (data && data.whitelisted) {
             document.getElementById('whitelistStatus').textContent = "Token is on the official whitelist.";
             document.getElementById('whitelistStatus').style.color = "green";
+        } else if (data && !data.whitelisted) {
+            // Caso cuando el token no está en la whitelist
+            document.getElementById('whitelistStatus').textContent = "Token is not on the official whitelist. It may not be verified.";
+            document.getElementById('whitelistStatus').style.color = "orange";
         } else {
-            document.getElementById('whitelistStatus').textContent = "Token is not on the official whitelist.";
-            document.getElementById('whitelistStatus').style.color = "red";
+            // Si no se encontró información, indicar que es desconocido
+            document.getElementById('whitelistStatus').textContent = "Unable to verify token status. Further research needed.";
+            document.getElementById('whitelistStatus').style.color = "gray";
         }
+
+        // Información adicional para ayudar a los usuarios
+        document.getElementById('additionalInfo').style.display = 'block';
+
     } catch (error) {
         // Manejo de errores si algo sale mal
         document.getElementById('whitelistStatus').textContent = "Error checking token status.";
         document.getElementById('whitelistStatus').style.color = "red";
+        document.getElementById('additionalInfo').style.display = 'none'; // Ocultar información adicional en caso de error
     }
 });
