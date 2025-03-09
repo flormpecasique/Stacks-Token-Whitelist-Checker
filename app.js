@@ -1,6 +1,6 @@
-document.getElementById("checkToken").addEventListener("click", async function () {
-    const contractAddress = document.getElementById("contractAddress").value.trim(); // Obtiene el valor del input
-    const resultDiv = document.getElementById("result");
+document.getElementById("checkWhitelistBtn").addEventListener("click", async function () {
+    const contractAddress = document.getElementById("contractAddressInput").value.trim(); // Obtiene el valor del input
+    const resultDiv = document.getElementById("whitelistStatus");
 
     // Verifica que se haya introducido una dirección
     if (!contractAddress) {
