@@ -1,4 +1,6 @@
 /* style.css */
+
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,64 +8,140 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f8fa;
+    color: #222;
 }
 
-header {
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, p {
     text-align: center;
-    margin-bottom: 30px;
+    color: #333;
 }
 
-header h1 {
-    font-size: 2.5rem;
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
-header p {
-    font-size: 1.1rem;
-    color: #555;
+p {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+/* Header Styles */
+.header {
+    padding: 50px 0;
+    background-color: #0d3b66;
+    color: white;
+    margin-bottom: 60px;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.25rem;
+}
+
+/* Main Content */
+.main-content {
+    padding: 60px 0;
 }
 
 .form-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
 #contractAddress {
-    width: 300px;
-    padding: 10px;
-    font-size: 1rem;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    width: 350px;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+#contractAddress:focus {
+    border-color: #0d3b66;
+    outline: none;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff;
+    padding: 12px 20px;
+    font-size: 1.1rem;
     color: white;
+    background-color: #0d3b66;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #014f86;
 }
 
 .result {
     text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.result span {
     font-weight: bold;
 }
-footer {
+
+.result.success {
+    color: #28a745;
+}
+
+.result.error {
+    color: #dc3545;
+}
+
+/* Footer Styles */
+.footer {
+    padding: 40px 0;
+    background-color: #333;
+    color: white;
     text-align: center;
-    font-size: 1rem;
-    margin-top: 50px;
+    margin-top: 60px;
+}
+
+.footer p {
+    font-size: 1.1rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+    }
+
+    #contractAddress {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
 }
