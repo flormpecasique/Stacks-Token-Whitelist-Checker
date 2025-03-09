@@ -6,6 +6,7 @@ async function checkWhitelist() {
     
     if (!contractAddress) {
         resultDiv.innerHTML = 'Please enter a contract address.';
+        resultDiv.classList.remove('success', 'error');
         return;
     }
     
@@ -14,11 +15,16 @@ async function checkWhitelist() {
         const data = await response.json();
 
         if (data && data.metadata && data.metadata.is_whitelisted) {
-            resultDiv.innerHTML = `Token is <span style="color: green;">whitelisted</span> on official platforms.`;
+            resultDiv.innerHTML = `Token is <span class="success">whitelisted</span> on official platforms.`;
+            resultDiv.classList.add('success');
+            resultDiv.classList.remove('error');
         } else {
-            resultDiv.innerHTML = `Token is <span style="color: red;">NOT whitelisted</span>.`;
+            resultDiv.innerHTML = `Token is <span class="error">NOT whitelisted</span>.`;
+            resultDiv.classList.add('error');
+            resultDiv.classList.remove('success');
         }
     } catch (error) {
         resultDiv.innerHTML = 'Error: Could not fetch data. Please try again later.';
+        resultDiv.classList.remove('success', 'error');
     }
 }
