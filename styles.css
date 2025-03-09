@@ -84,6 +84,19 @@ button:hover {
     color: #333;
 }
 
+/* Add styles for different whitelist statuses */
+.verified {
+    color: #28a745; /* Green */
+}
+
+.warning {
+    color: #ffc107; /* Yellow */
+}
+
+.error {
+    color: #dc3545; /* Red */
+}
+
 /* Footer styling */
 footer {
     margin-top: 40px;
