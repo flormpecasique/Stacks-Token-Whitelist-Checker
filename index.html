@@ -9,31 +9,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
+    <div class="container">
+        <header>
             <h1>Stacks Token Whitelist Checker</h1>
-            <p>Verify if a token contract is part of the official Stacks whitelist.</p>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <div class="container">
+            <p class="subtitle">Check if a token contract is verified and safe on Stacks platforms.</p>
+        </header>
+        <main>
             <div class="form-container">
-                <input type="text" id="contractAddress" placeholder="Enter Token Contract Address">
+                <input type="text" id="contractAddress" placeholder="Enter Token Contract Address" />
                 <button onclick="checkWhitelist()">Check Whitelist</button>
             </div>
             <div id="result" class="result">
-                <!-- Result message -->
+                <!-- Result will be displayed here -->
             </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>Built with care by Stacks Community</p>
-        </div>
-    </footer>
-
+        </main>
+        <footer>
+            <p>2025 Stacks Token Whitelist Checker by flor.btc | Todos los derechos reservados</p>
+        </footer>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
