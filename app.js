@@ -1,41 +1,57 @@
-document.getElementById('checkWhitelistBtn').addEventListener('click', async function() {
-    const contractAddress = document.getElementById('contractAddressInput').value.trim();
-    
-    // Verificar si la dirección de contrato no está vacía
+document.getElementById("checkToken").addEventListener("click", async function () {
+    const contractAddress = document.getElementById("contractAddress").value.trim();
+    const resultDiv = document.getElementById("result");
+
     if (!contractAddress) {
-        alert("Please enter a contract address.");
+        resultDiv.innerHTML = `<p class="error">Please enter a contract address.</p>`;
         return;
     }
 
-    // Mostrar mensaje de carga
-    document.getElementById('whitelistStatus').textContent = "Checking...";
+    // Lista de contratos verificados en stxtools.io
+    const verifiedContracts = [
+        "SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.ststx-token",
+        "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.velar-token",
+        "SPN5AKG35QZSK2M8GAMR4AFX45659RJHDW353HSG.usdh-token-v1",
+        "SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token",
+        "SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token",
+        "SP3M31QFF6S96215K4Y2Z9K5SGHJN384NV6YM6VM8.satoshai",
+        "SP2EEV5QBZA454MSMW9W3WJNRXVJF36VPV17FFKYH.DROID",
+        "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.nope",
+        "SP3W69VDG9VTZNG7NTW1QNCC1W45SNY98W1JSZBJH.flat-earth-stxcity",
+        "SP1Z92MPDQEWZXW36VX71Q25HKF5K2EPCJ304F275.tokensoft-token-v4k68639zxz",
+        "SPD1R8A962EKB8JEHFQTFNXGZTRR93J0NG5KCM81.gangnam-rose-apt-stxcity",
+        "SP2TT71CXBRDDYP2P8XMVKRFYKRGSMBWCZ6W6FDGT.notastrategy",
+        "SP3HNEXSXJK2RYNG5P6YSEE53FREX645JPJJ5FBFA.meme-stxcity",
+        "SP1PW804599BZ46B4A0FYH86ED26XPJA7SFYNK1XS.play",
+        "SP1JFFSYTSH7VBM54K29ZFS9H4SVB67EA8VT2MYJ9.gus-token",
+        "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+        "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.token-alex",
+        "SP102V8P0F7JX67ARQ77WEA3D3CFB5XW39REDT0AM.auto-alex-v3",
+        "SP673Z4BPB4R73359K9HE55F2X91V5BJTN5SXZ5T.token-liabtc",
+        "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-token",
+        "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.usda-token",
+        "SP2C1WREHGM75C7TGFAEJPFKTFTEGZKF6DFT6E2GE.kangaroo"
+    ];
+
+    if (verifiedContracts.includes(contractAddress)) {
+        resultDiv.innerHTML = `<p class="verified">✅ This token is verified and safe.</p>`;
+        return;
+    }
+
+    // Si no está en la lista, consultamos la API de Hiro
+    const apiUrl = `https://api.mainnet.hiro.so/extended/v1/tokens/${contractAddress}/metadata`;
 
     try {
-        // Llamada a la API para obtener los metadatos del token
-        const response = await fetch(`https://api.mainnet.hiro.so/extended/v1/tokens/${contractAddress}/metadata`);
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error("Token not found in the API.");
+
         const data = await response.json();
-
-        // Verificar si la respuesta tiene un estado que indique "whitelisted" o alguna otra propiedad relevante
-        if (data && data.whitelisted) {
-            document.getElementById('whitelistStatus').textContent = "Token is on the official whitelist.";
-            document.getElementById('whitelistStatus').style.color = "green";
-        } else if (data && !data.whitelisted) {
-            // Caso cuando el token no está en la whitelist
-            document.getElementById('whitelistStatus').textContent = "Token is not on the official whitelist. It may not be verified.";
-            document.getElementById('whitelistStatus').style.color = "orange";
+        if (data && data.contract) {
+            resultDiv.innerHTML = `<p class="warning">⚠️ Token is not on the official whitelist. Proceed with caution.</p>`;
         } else {
-            // Si no se encontró información, indicar que es desconocido
-            document.getElementById('whitelistStatus').textContent = "Unable to verify token status. Further research needed.";
-            document.getElementById('whitelistStatus').style.color = "gray";
+            resultDiv.innerHTML = `<p class="error">❌ Token not found. It may be a scam.</p>`;
         }
-
-        // Información adicional para ayudar a los usuarios
-        document.getElementById('additionalInfo').style.display = 'block';
-
     } catch (error) {
-        // Manejo de errores si algo sale mal
-        document.getElementById('whitelistStatus').textContent = "Error checking token status.";
-        document.getElementById('whitelistStatus').style.color = "red";
-        document.getElementById('additionalInfo').style.display = 'none'; // Ocultar información adicional en caso de error
+        resultDiv.innerHTML = `<p class="error">❌ Error fetching token data. Please try again.</p>`;
     }
 });
