@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stacks Token Whitelist Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Stacks Token Whitelist Checker</h1>
+        <p>Verify if a token contract is whitelisted in official Stacks platforms.</p>
+    </header>
+    <main>
+        <div class="form-container">
+            <input type="text" id="contractAddress" placeholder="Enter Token Contract Address">
+            <button onclick="checkWhitelist()">Check Whitelist</button>
+        </div>
+        <div id="result" class="result">
+            <!-- Result will be displayed here -->
+        </div>
+    </main>
+    <footer>
+        <p>Powered by Stacks Blockchain</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
