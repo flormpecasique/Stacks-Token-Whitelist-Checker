@@ -5,25 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stacks Token Whitelist Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Stacks Token Whitelist Checker</h1>
-        <p>Verify if a token contract is whitelisted in official Stacks platforms.</p>
-    </header>
-    <main>
-        <div class="form-container">
-            <input type="text" id="contractAddress" placeholder="Enter Token Contract Address">
-            <button onclick="checkWhitelist()">Check Whitelist</button>
+    <header class="header">
+        <div class="container">
+            <h1>Stacks Token Whitelist Checker</h1>
+            <p>Verify if a token contract is part of the official Stacks whitelist.</p>
         </div>
-        <div id="result" class="result">
-            <!-- Result will be displayed here -->
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="form-container">
+                <input type="text" id="contractAddress" placeholder="Enter Token Contract Address">
+                <button onclick="checkWhitelist()">Check Whitelist</button>
+            </div>
+            <div id="result" class="result">
+                <!-- Result message -->
+            </div>
         </div>
     </main>
-    <footer>
-        <p>Powered by Stacks Blockchain</p>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built with care by Stacks Community</p>
+        </div>
     </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
