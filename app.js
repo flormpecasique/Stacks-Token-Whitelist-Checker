@@ -1,29 +1,31 @@
-// app.js
-
-async function checkWhitelist() {
-    const contractAddress = document.getElementById('contractAddress').value;
-    const resultDiv = document.getElementById('result');
+document.getElementById('checkWhitelistBtn').addEventListener('click', async function() {
+    const contractAddress = document.getElementById('contractAddressInput').value.trim();
     
-    // Input validation
+    // Verificar si la dirección de contrato no está vacía
     if (!contractAddress) {
-        resultDiv.innerHTML = '<span style="color: red;">Please enter a contract address.</span>';
+        alert("Please enter a contract address.");
         return;
     }
 
-    // Loading state
-    resultDiv.innerHTML = '<span style="color: #007bff;">Checking...</span>';
+    // Mostrar mensaje de carga
+    document.getElementById('whitelistStatus').textContent = "Checking...";
 
     try {
+        // Llamada a la API para obtener los metadatos del token
         const response = await fetch(`https://api.mainnet.hiro.so/extended/v1/tokens/${contractAddress}/metadata`);
         const data = await response.json();
 
-        // Display results based on the API response
-        if (data && data.metadata && data.metadata.is_whitelisted) {
-            resultDiv.innerHTML = `<span style="color: green;">Token is whitelisted on official platforms.</span>`;
+        // Verificar si la respuesta es exitosa y si el token está en la whitelist
+        if (data && data.whitelisted) {
+            document.getElementById('whitelistStatus').textContent = "Token is on the official whitelist.";
+            document.getElementById('whitelistStatus').style.color = "green";
         } else {
-            resultDiv.innerHTML = `<span style="color: red;">Token is NOT whitelisted.</span>`;
+            document.getElementById('whitelistStatus').textContent = "Token is not on the official whitelist.";
+            document.getElementById('whitelistStatus').style.color = "red";
         }
     } catch (error) {
-        resultDiv.innerHTML = '<span style="color: red;">Error: Could not fetch data. Please try again later.</span>';
+        // Manejo de errores si algo sale mal
+        document.getElementById('whitelistStatus').textContent = "Error checking token status.";
+        document.getElementById('whitelistStatus').style.color = "red";
     }
-}
+});
