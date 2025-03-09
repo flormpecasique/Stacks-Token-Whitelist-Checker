@@ -1,7 +1,8 @@
 document.getElementById("checkToken").addEventListener("click", async function () {
-    const contractAddress = document.getElementById("contractAddress").value.trim();
+    const contractAddress = document.getElementById("contractAddress").value.trim(); // Obtiene el valor del input
     const resultDiv = document.getElementById("result");
 
+    // Verifica que se haya introducido una dirección
     if (!contractAddress) {
         resultDiv.innerHTML = `<p class="error">Please enter a contract address.</p>`;
         return;
@@ -33,12 +34,13 @@ document.getElementById("checkToken").addEventListener("click", async function (
         "SP2C1WREHGM75C7TGFAEJPFKTFTEGZKF6DFT6E2GE.kangaroo"
     ];
 
+    // Verifica si el contrato está en la lista verificada
     if (verifiedContracts.includes(contractAddress)) {
         resultDiv.innerHTML = `<p class="verified">✅ This token is verified and safe.</p>`;
         return;
     }
 
-    // Si no está en la lista, consultamos la API de Hiro
+    // Si no está en la lista verificada, consulta la API de Hiro
     const apiUrl = `https://api.mainnet.hiro.so/extended/v1/tokens/${contractAddress}/metadata`;
 
     try {
