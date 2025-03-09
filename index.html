@@ -13,7 +13,7 @@
     <div class="container">
         <header>
             <h1>Stacks Token Whitelist Checker</h1>
-            <p class="description">Enter a Stacks token address to check its whitelist status and avoid risks!</p>
+            <p class="description">Enter a Stacks token address to check its whitelist status and avoid risks.</p>
         </header>
 
         <main>
@@ -21,6 +21,10 @@
                 <input type="text" id="contractAddressInput" placeholder="Enter contract address" />
                 <button id="checkWhitelistBtn">Check Whitelist</button>
                 <div id="whitelistStatus"></div>
+                <!-- Información adicional sobre el resultado -->
+                <div id="additionalInfo" style="display: none; font-size: 0.9rem; color: #555; margin-top: 10px;">
+                    <p>If the token is not on the whitelist, it may not be verified by official sources, but it could still be a legitimate token. Please conduct further research before proceeding.</p>
+                </div>
             </section>
         </main>
 
