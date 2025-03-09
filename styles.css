@@ -32,16 +32,19 @@ header {
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem; /* Adjusted to make the title smaller */
     color: #333;
     font-weight: bold;
-    margin-top: 30px;
 }
 
-header p {
+header .description {
     font-size: 1rem;
     color: #555;
     margin-top: 10px;
+    line-height: 1.4;
+    max-height: 2.8em; /* Limiting the description to two lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Main section styling */
