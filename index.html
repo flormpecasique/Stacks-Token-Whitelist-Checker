@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stacks Token Whitelist Checker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Stacks Token Whitelist Checker</h1>
-            <p class="subtitle">Check if a token contract is verified and safe on Stacks platforms.</p>
+            <p>Enter a Stacks token contract address below to check if it is on the official whitelist</p>
         </header>
+
         <main>
-            <div class="form-container">
-                <input type="text" id="contractAddress" placeholder="Enter Token Contract Address" />
-                <button onclick="checkWhitelist()">Check Whitelist</button>
-            </div>
-            <div id="result" class="result">
-                <!-- Result will be displayed here -->
-            </div>
+            <section>
+                <input type="text" id="contractAddressInput" placeholder="Enter contract address" />
+                <button id="checkWhitelistBtn">Check Whitelist</button>
+                <div id="whitelistStatus"></div>
+            </section>
         </main>
-        <footer>
-            <p>2025 Stacks Token Whitelist Checker by flor.btc | Todos los derechos reservados</p>
+
+        <footer class="footer">
+            <p>© 2025 STX Balance by flor.btc | All rights reserved.</p>
         </footer>
     </div>
+
     <script src="app.js"></script>
 </body>
+
 </html>
